@@ -37,7 +37,7 @@ jobs:
         with:
           name: 'ghaction'
           email: 'ghaction@ag04.io'
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Set up Java
         uses: actions/setup-java@v3
@@ -50,7 +50,7 @@ jobs:
       
       - name: Publish package
         run: |-
-          ./gradlew release -Prelease.useAutomaticVersion=true -Pgithub_username=${{ env.GITHUB_ACTOR }} -Pgithub_password=${{ secrets.TOKEN }} -Prelease.releaseVersion=${{ env.RELEASE_VERSION }} -Prelease.newVersion=${{ env.NEXT_VERSION }}
+          ./gradlew release -Prelease.useAutomaticVersion=true -Pgithub_username=${{ env.GITHUB_ACTOR }} -Pgithub_password=${{ secrets.GITHUB_TOKEN }} -Prelease.releaseVersion=${{ env.RELEASE_VERSION }} -Prelease.newVersion=${{ env.NEXT_VERSION }}
       
       - name: Update README.md
         id: readmeUpdate
@@ -71,7 +71,7 @@ jobs:
         id: createRelease
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release_name: Release v${{ env.RELEASE_VERSION }}
           tag_name: ${{ env.RELEASE_VERSION }}

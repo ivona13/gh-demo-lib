@@ -1,7 +1,7 @@
 package com.ag04.utils;
 
 /**
- *
+ * dump comm
  * @author ivonaraguz
  */
 public interface DummyService {
